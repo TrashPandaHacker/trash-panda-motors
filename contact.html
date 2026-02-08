@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trash Panda Motors — Contact</title>
+    <meta name="description" content="Contact Trash Panda Motors for builds, media, or track events." />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <main id="main" class="wrap" role="main">
+      <header class="nav" aria-label="Trash Panda Motors Navigation">
+        <a class="brand" href="index.html">
+          <div class="mark" aria-hidden="true">TP</div>
+          <div>
+            <h1>Trash Panda Motors</h1>
+            <p>Track • Drift • Builds</p>
+          </div>
+        </a>
+
+        <nav class="links" aria-label="Site">
+          <a href="builds.html">Builds</a>
+          <a href="services.html">What We Do</a>
+          <a href="media.html">Media</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <section id="contact" class="section" aria-labelledby="contact-heading">
+        <h3 id="contact-heading">Contact</h3>
+        <p>Tell us what you’re building and what you need. If it’s dumb, we’ll say so—politely.</p>
+
+        <!-- Netlify-ready form -->
+        <form class="form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Contact form">
+          <input type="hidden" name="form-name" value="contact" />
+          <p style="display:none"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
+
+          <label>
+            Name
+            <input name="name" type="text" placeholder="Your name" required />
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" placeholder="you@email.com" required />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="5" placeholder="What are you working on?" required></textarea>
+          </label>
+
+          <button class="btn" type="submit">Send</button>
+          <p class="fine">
+            This form will submit if deployed to Netlify or if you wire it to Formspree / serverless.
+          </p>
+        </form>
+      </section>
+
+      <footer class="footer" role="contentinfo">
+        <span>© <span id="year"></span> Trash Panda Motors</span>
+        <span><a href="index.html">Home</a></span>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="assets/main.js" defer></script>
+  </body>
+</html>
