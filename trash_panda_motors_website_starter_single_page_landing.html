@@ -1,0 +1,573 @@
+<!-- Trash Panda Motors — Single-Page Landing (HTML/CSS/JS in one file)
+     How to use:
+     1) Save as index.html
+     2) Open in browser
+     3) Deploy: Netlify / Vercel / GitHub Pages
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trash Panda Motors</title>
+    <meta name="description" content="Track days. Drift nights. Clean builds. Trash Panda Motors." />
+    <meta name="theme-color" content="#0b0f14" />
+
+    <!-- Open Graph (optional) -->
+    <meta property="og:title" content="Trash Panda Motors" />
+    <meta property="og:description" content="Track days. Drift nights. Clean builds. Trash Panda Motors." />
+    <meta property="og:type" content="website" />
+
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --panel: #101722;
+        --panel2: rgba(255, 255, 255, 0.04);
+        --text: #eaf0ff;
+        --muted: #a9b4cf;
+        --border: rgba(255, 255, 255, 0.09);
+        --shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
+        --radius: 18px;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background:
+          radial-gradient(1100px 650px at 18% 12%, rgba(110, 175, 255, 0.14), transparent 60%),
+          radial-gradient(900px 520px at 78% 22%, rgba(255, 140, 110, 0.12), transparent 55%),
+          var(--bg);
+        color: var(--text);
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 22px 18px 64px;
+      }
+
+      /* NAV */
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        position: sticky;
+        top: 0;
+        padding: 14px 0;
+        backdrop-filter: blur(10px);
+        background: linear-gradient(to bottom, rgba(11, 15, 20, 0.9), rgba(11, 15, 20, 0.25));
+        z-index: 10;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.06);
+        box-shadow: var(--shadow);
+        font-weight: 900;
+        letter-spacing: 0.5px;
+      }
+
+      .brand h1 {
+        font-size: 1.05rem;
+        margin: 0;
+        line-height: 1.1;
+      }
+      .brand p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: rgba(233, 240, 255, 0.6);
+      }
+
+      .links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .links a {
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        color: var(--muted);
+      }
+      .links a:hover {
+        border-color: var(--border);
+        background: rgba(255,255,255,0.05);
+        color: var(--text);
+      }
+
+      /* HERO */
+      .hero {
+        padding: 48px 0 20px;
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        color: rgba(233, 240, 255, 0.72);
+        width: fit-content;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(233, 240, 255, 0.7);
+        opacity: 0.75;
+      }
+
+      .hero h2 {
+        margin: 16px 0 10px;
+        font-size: clamp(40px, 5vw, 62px);
+        letter-spacing: -0.03em;
+      }
+
+      .hero .sub {
+        color: var(--muted);
+        line-height: 1.65;
+        max-width: 64ch;
+        margin: 0;
+        font-size: 1.06rem;
+      }
+
+      .cta {
+        margin-top: 18px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.09);
+        color: var(--text);
+        padding: 12px 16px;
+        border-radius: 14px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform 0.06s ease;
+      }
+      .btn:hover { transform: translateY(-1px); }
+      .btn:active { transform: translateY(0); }
+
+      .btn.ghost { background: transparent; }
+
+      .heroCard {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(255,255,255,0.04);
+        box-shadow: var(--shadow);
+        padding: 18px 16px;
+      }
+
+      .heroCard h3 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+        letter-spacing: 0.01em;
+      }
+
+      .heroCard ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* SECTIONS */
+      .section {
+        padding: 44px 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .section h3 {
+        margin: 0 0 12px;
+        font-size: 1.55rem;
+      }
+
+      .section p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--panel2);
+        box-shadow: var(--shadow);
+        padding: 18px 16px;
+      }
+
+      .card h4 {
+        margin: 0 0 6px;
+        font-size: 1.05rem;
+      }
+
+      .pill {
+        margin-top: 10px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.06);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      /* BUILD LOG */
+      .builds {
+        margin-top: 16px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .build {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+        padding: 18px 16px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(255,255,255,0.03);
+      }
+
+      .build h4 { margin: 0 0 8px; }
+      .build .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .chip {
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        color: rgba(233, 240, 255, 0.78);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .placeholder {
+        border: 1px dashed rgba(255,255,255,0.18);
+        border-radius: var(--radius);
+        min-height: 150px;
+        display: grid;
+        place-items: center;
+        color: rgba(233, 240, 255, 0.55);
+        text-align: center;
+        padding: 16px;
+      }
+
+      /* CONTACT */
+      .form {
+        margin-top: 14px;
+        max-width: 560px;
+        display: grid;
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        font-weight: 800;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.22);
+        color: var(--text);
+        outline: none;
+      }
+
+      input:focus, textarea:focus {
+        border-color: rgba(255,255,255,0.22);
+      }
+
+      .fine {
+        font-size: 0.9rem;
+        color: rgba(233, 240, 255, 0.55);
+        line-height: 1.6;
+      }
+
+      /* FOOTER + TOAST */
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 26px 0 6px;
+        color: rgba(233, 240, 255, 0.55);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .toast {
+        position: fixed;
+        left: 18px;
+        bottom: 18px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(16, 23, 34, 0.92);
+        box-shadow: var(--shadow);
+        color: var(--text);
+        opacity: 0;
+        transform: translateY(8px);
+        pointer-events: none;
+        transition: all 0.18s ease;
+        max-width: min(560px, calc(100vw - 36px));
+        z-index: 20;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero { grid-template-columns: 1fr; }
+        .grid { grid-template-columns: 1fr; }
+        .build { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header class="nav" aria-label="Trash Panda Motors Navigation">
+        <a class="brand" href="#top">
+          <div class="mark" aria-hidden="true">TP</div>
+          <div>
+            <h1>Trash Panda Motors</h1>
+            <p>Track • Drift • Builds</p>
+          </div>
+        </a>
+
+        <nav class="links" aria-label="Site">
+          <a href="#builds">Builds</a>
+          <a href="#services">What We Do</a>
+          <a href="#media">Media</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section id="top" class="hero">
+        <div>
+          <div class="tag"><span class="dot"></span> Built for tire smoke and clean results</div>
+          <h2>Drive it hard.<br />Build it smarter.</h2>
+          <p class="sub">
+            Trash Panda Motors is a no-BS motorsport brand: track days, drift nights, build logs,
+            and the kind of garage decisions that make your wallet cry and your soul smile.
+          </p>
+
+          <div class="cta">
+            <a class="btn" href="#builds">See the builds</a>
+            <a class="btn ghost" href="#contact">Work with us</a>
+          </div>
+        </div>
+
+        <aside class="heroCard" aria-label="Highlights">
+          <h3>Right now</h3>
+          <ul>
+            <li>Build logs with parts + cost tracking</li>
+            <li>Event schedule (track/drift/meets)</li>
+            <li>Media: photos, reels, and “oops” moments</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="builds" class="section">
+        <h3>Build Log</h3>
+        <p>
+          A home for the cars: what changed, why it changed, what it cost, and whether it actually worked.
+        </p>
+
+        <div class="builds">
+          <div class="build">
+            <div>
+              <h4>Project: GR86 Track Rat</h4>
+              <p>
+                Suspension, brakes, cooling, and driver mods. The goal: consistent laps without cooking anything.
+              </p>
+              <div class="meta">
+                <span class="chip">Status: Planning</span>
+                <span class="chip">Focus: Track</span>
+                <span class="chip">Budget: $</span>
+              </div>
+              <button class="pill" data-toast="Add a build page later (or keep it all here).">Open build</button>
+            </div>
+            <div class="placeholder">
+              Drop a car photo here later<br />
+              (or replace with a YouTube embed)
+            </div>
+          </div>
+
+          <div class="build">
+            <div>
+              <h4>Project: Drift Beater (Future)</h4>
+              <p>
+                The “learn without fear” car. Cheap parts, simple setup, and high seat time.
+              </p>
+              <div class="meta">
+                <span class="chip">Status: Wishlist</span>
+                <span class="chip">Focus: Drift</span>
+                <span class="chip">Rule: Seat time first</span>
+              </div>
+              <button class="pill" data-toast="We can turn this into a checklist + sourcing list.">Open build</button>
+            </div>
+            <div class="placeholder">Placeholder media tile</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <h3>What We Do</h3>
+        <p>
+          Not a shop. Not a reseller. A brand with receipts: planning, documenting, and helping others build smarter.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Build Planning</h4>
+            <p>Mod roadmap, priorities, and “don’t waste money” guidance.</p>
+            <button class="pill" data-toast="Add a downloadable build planner PDF.">Details</button>
+          </div>
+
+          <div class="card">
+            <h4>Track Prep Checklists</h4>
+            <p>Fluids, torque, brakes, spares—everything that ruins your day if you ignore it.</p>
+            <button class="pill" data-toast="We can add a printable checklist page.">Details</button>
+          </div>
+
+          <div class="card">
+            <h4>Content + Media</h4>
+            <p>Reels, photo sets, and build updates that don’t feel like a bad ad.</p>
+            <button class="pill" data-toast="Drop your IG/TT links and we’ll wire them in.">Details</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="media" class="section">
+        <h3>Media</h3>
+        <p>Photos and clips. Clean, loud, and occasionally questionable decision-making.</p>
+
+        <div class="grid" style="margin-top: 16px;">
+          <div class="card">
+            <h4>Instagram</h4>
+            <p>Link your profile and this becomes a proper call-to-action card.</p>
+            <button class="pill" data-toast="Replace this button with your IG link.">Add IG</button>
+          </div>
+          <div class="card">
+            <h4>TikTok</h4>
+            <p>Short clips: builds, track days, and behind-the-scenes garage chaos.</p>
+            <button class="pill" data-toast="Replace this button with your TikTok link.">Add TikTok</button>
+          </div>
+          <div class="card">
+            <h4>YouTube</h4>
+            <p>Long form build logs. The place for real info (and long suffering).</p>
+            <button class="pill" data-toast="We can embed your latest video here.">Add YouTube</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h3>Contact</h3>
+        <p>Tell us what you’re building and what you need. If it’s dumb, we’ll say so—politely.</p>
+
+        <form class="form" id="contactForm">
+          <label>
+            Name
+            <input name="name" type="text" placeholder="Your name" required />
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" placeholder="you@email.com" required />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="5" placeholder="What are you working on?" required></textarea>
+          </label>
+
+          <button class="btn" type="submit">Send</button>
+          <p class="fine">
+            This form is front-end only right now. If you want it to actually deliver messages,
+            wire it to <strong>Netlify Forms</strong>, <strong>Formspree</strong>, or a tiny serverless endpoint.
+          </p>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <span>© <span id="year"></span> Trash Panda Motors</span>
+        <span>Built with taste and poor financial decisions.</span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Toasts
+      const toast = document.getElementById("toast");
+      let t = null;
+      const showToast = (msg) => {
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(t);
+        t = setTimeout(() => toast.classList.remove("show"), 2300);
+      };
+
+      document.querySelectorAll("[data-toast]").forEach((el) => {
+        el.addEventListener("click", () => showToast(el.dataset.toast));
+      });
+
+      // Demo form handler
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        showToast("Sent (demo). Tell me where you want messages delivered and I’ll wire it up.");
+        e.target.reset();
+      });
+    </script>
+  </body>
+</html>
